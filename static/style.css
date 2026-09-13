@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Domine:wght@400..700&display=swap');
 
 :root {
-    --linia-orange: #CC5533;
-    --linia-purple: #414288;
-    --linia-teal: #008080;
-    --linia-orange-hover: #b34a2d;
+    /* Nouvelle palette de marque Linia */
+    --linia-purple: #414283;
+    --linia-blue: #74a5ff;
+    --linia-purple-light: #8e87e3;
     --linia-purple-hover: #353670;
-    --linia-teal-hover: #006666;
+    --linia-blue-hover: #5b8ee8;
+    --linia-purple-light-hover: #7b74cc;
 
+    /* Alias pour rétrocompatibilité totale */
+    --linia-orange: var(--linia-blue);
+    --linia-teal: var(--linia-purple-light);
+    --linia-orange-hover: var(--linia-blue-hover);
+    --linia-teal-hover: var(--linia-purple-light-hover);
+
+    /* Transporteurs partenaires (conservés) */
     --flix-green: #73d700;
     --flix-green-accent: #73d700;
     --flix-green-hover: #5cb800;
@@ -23,8 +31,8 @@
     --border-light: #e8eaed;
     --border-color: #e8eaed;
     --blue-accent: var(--linia-purple);
-    --green-accent: var(--linia-teal);
-    --green-hover: var(--linia-teal-hover);
+    --green-accent: var(--linia-blue);
+    --green-hover: var(--linia-blue-hover);
     --shadow-sm: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
     --shadow-md: 0 1px 3px 0 rgba(60, 64, 67, .30), 0 4px 8px 3px rgba(60, 64, 67, .15);
     --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -223,12 +231,12 @@ a:hover {
 
 .landing-brand-logo {
     display: block;
-    width: 240px;
+    width: 260px;
     max-width: 85vw;
     height: auto;
     margin: 0 auto;
     object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.04));
+    filter: drop-shadow(0 4px 16px rgba(65, 66, 131, 0.12));
 }
 
 @keyframes gradient-shift {
@@ -243,18 +251,16 @@ a:hover {
 
 .highlight {
     background: linear-gradient(90deg,
-            var(--linia-orange) 0%,
-            var(--linia-purple) 16.66%,
-            var(--linia-teal) 33.33%,
-            var(--linia-orange) 50%,
-            var(--linia-purple) 66.66%,
-            var(--linia-teal) 83.33%,
-            var(--linia-orange) 100%);
+            var(--linia-purple) 0%,
+            var(--linia-blue) 25%,
+            var(--linia-purple-light) 50%,
+            var(--linia-blue) 75%,
+            var(--linia-purple) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradient-shift 3.5s linear infinite;
+    animation: gradient-shift 4s linear infinite;
 }
 
 .landing-search-container {
@@ -1512,12 +1518,11 @@ a:hover {
     max-width: 140px;
     object-fit: contain;
     display: block;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .about-nav .nav-brand:hover .nav-logo {
-    transform: scale(1.03);
-    opacity: 0.95;
+    opacity: 0.9;
 }
 
 .about-nav .nav-link {
@@ -2745,15 +2750,16 @@ footer p {
 .lang-option:hover {
     transform: scale(1.1);
     background: var(--bg-light);
-    color: var(--text-primary);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    color: var(--linia-purple);
+    border-color: var(--linia-blue);
+    box-shadow: 0 6px 15px rgba(116, 165, 255, 0.25);
 }
 
 .lang-option.active {
-    background: var(--flix-green-accent);
+    background: linear-gradient(135deg, var(--linia-purple), #5b5da8);
     color: white;
-    border-color: var(--flix-green-accent);
-    box-shadow: 0 6px 15px rgba(115, 215, 0, 0.4);
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(65, 66, 131, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -3248,5 +3254,63 @@ footer p {
 }
 
 .btn-github:hover svg {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Instagram Button */
+.btn-instagram {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: none;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 2px 10px;
+    font-size: 0.9em;
+    line-height: 1.6;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white !important;
+    text-decoration: none !important;
+    vertical-align: middle;
+    margin: 0 4px;
+    box-shadow: 0 2px 5px rgba(220, 39, 67, 0.25);
+    white-space: nowrap;
+    position: relative;
+    top: -1px;
+}
+
+.btn-instagram .btn-prefix {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    white-space: nowrap;
+}
+
+.btn-instagram:hover .btn-prefix {
+    max-width: 200px;
+    opacity: 1;
+    margin-right: 6px;
+}
+
+.btn-instagram:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(204, 35, 102, 0.35);
+    text-decoration: none !important;
+}
+
+.btn-instagram svg {
+    margin-right: 6px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    transition: transform 0.3s ease;
+}
+
+.btn-instagram:hover svg {
     transform: rotate(15deg) scale(1.1);
 }

@@ -22,7 +22,8 @@
     <div class="about-page">
         <nav class="about-nav">
             <a class="nav-brand" href="{{ url_for_page('home') }}" aria-label="Linia">
-                <img src="{{ url_for('static', filename='og-image.png') }}" alt="Linia" class="nav-logo" width="1200" height="630">
+                <img src="{{ url_for('static', filename='linia-logo.svg') }}" alt="Linia" class="nav-logo" width="1028"
+                    height="388">
             </a>
             <div style="flex-grow: 1;"></div>
             <a class="nav-link" href="{{ url_for_page('home') }}" style="margin-left: 0;">{{ t('return_home') }}</a>
@@ -44,6 +45,19 @@
             <section class="about-section">
                 <h2>{{ t('legal_intellectual_title') }}</h2>
                 <p>{{ t('legal_intellectual_content') }}</p>
+                <p>
+                    Création du logo et choix des couleurs :
+                    <a href="https://www.instagram.com/ne_ermak/" target="_blank" rel="noopener noreferrer"
+                        class="btn-instagram">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg><span class="btn-prefix">Voir sur</span>
+                        <span>@ne_ermak</span>
+                    </a>
+                </p>
             </section>
 
             <section class="about-section">

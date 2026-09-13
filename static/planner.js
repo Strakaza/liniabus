@@ -570,8 +570,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const overlay = document.createElement('div');
         overlay.id = 'confettiNotification';
         overlay.className = 'confetti-overlay';
-        const colors = ['var(--linia-orange)', 'var(--linia-purple)', 'var(--linia-teal)'];
-        const colorHex = ['#CC5533', '#414288', '#008080'];
+        const colors = ['var(--linia-purple)', 'var(--linia-blue)', 'var(--linia-purple-light)'];
+        const colorHex = ['#414283', '#74a5ff', '#8e87e3'];
         let confettiHTML = '';
         for (let i = 0; i < 40; i++) {
             const color = colorHex[i % 3];
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.innerHTML = `
             <div class="confetti-container">${confettiHTML}</div>
             <div class="confetti-modal">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--linia-teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--linia-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>

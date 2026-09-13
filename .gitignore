@@ -6,3 +6,5 @@ __pycache__/
 output_gtfs/
 static/downloads/
 *.sqlite
+venv/
+temp/
