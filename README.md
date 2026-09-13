@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="static/og-image.png" alt="Linia Logo" width="400" />
+  <img src="static/linia-logo-purple.svg" alt="Linia Logo" width="380" />
 </p>
-
-<h1 align="center">Linia</h1>
 
 <p align="center">
   <strong>Planificateur d'itinéraires et cartographie unifiée des réseaux de bus longue distance en Europe.</strong>
