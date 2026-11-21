@@ -1,7 +1,3 @@
-try:
-    import pandas as pd
-except ImportError:
-    pd = None
 import os
 import sqlite3
 import logging
@@ -30,7 +26,11 @@ GTFS_DATA_PATH = os.path.join("output_gtfs", "unified")
 from config_data import TOP_HUBS, BASE_URL, SUPPORTED_LANGS, DEFAULT_LANG, OG_LOCALES, URL_SLUGS, SEARCH_SYNONYMS, SEO_CONFIG
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["https://liniabus.eu", "https://www.liniabus.eu"]}}) # Allowed origins for API
+cors_origins = ["https://liniabus.eu", "https://www.liniabus.eu"]
+koyeb_public_domain = os.environ.get("KOYEB_PUBLIC_DOMAIN", "").strip()
+if koyeb_public_domain:
+    cors_origins.append(f"https://{koyeb_public_domain}")
+CORS(app, resources={r"/api/*": {"origins": cors_origins}}) # Allowed origins for API
 
 # Rate Limiting
 limiter = Limiter(
@@ -40,11 +40,15 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
+img_src_origins = ["'self'", "data:", "blob:", "https://*.mapbox.com", "https://liniabus.eu", "https://*.tile.openstreetmap.org", "https://tile.openstreetmap.org", "https://*.basemaps.cartocdn.com"]
+if koyeb_public_domain:
+    img_src_origins.append(f"https://{koyeb_public_domain}")
+
 csp = {
     'default-src': "'self'",
     'script-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://api.mapbox.com", "https://cdn.jsdelivr.net", "https://unpkg.com", "https://cdnjs.cloudflare.com"],
     'style-src': ["'self'", "'unsafe-inline'", "https://api.mapbox.com", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net", "https://unpkg.com"],
-    'img-src': ["'self'", "data:", "blob:", "https://*.mapbox.com", "https://liniabus.eu", "https://*.tile.openstreetmap.org", "https://tile.openstreetmap.org", "https://*.basemaps.cartocdn.com"],
+    'img-src': img_src_origins,
     'font-src': ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
     'connect-src': ["'self'", "https://api.mapbox.com", "https://events.mapbox.com", "https://unpkg.com", "https://router.project-osrm.org", "https://cdnjs.cloudflare.com"],
     'worker-src': ["'self'", "blob:"],
@@ -63,8 +67,12 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
 @app.before_request
 def handle_redirection():
     host = request.host
+    canonical_host = os.environ.get("CANONICAL_HOST", "").strip()
+    if canonical_host and host and host != canonical_host and "koyeb.app" in host:
+        new_url = request.url.replace(host, canonical_host, 1)
+        return redirect(new_url, code=301)
     if host and "onrender.com" in host:
-        new_url = request.url.replace(host, "liniabus.eu")
+        new_url = request.url.replace(host, "liniabus.eu", 1)
         return redirect(new_url, code=301)
 
 BAD_BOTS = [

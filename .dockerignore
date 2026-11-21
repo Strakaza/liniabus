@@ -10,13 +10,19 @@ venv/
 .venv
 
 # Git
--.git        
-+.gitignore
--# .gitattributes 
+.git
+.gitignore
+.gitattributes
+.github/
 
 # Docker
--Dockerfile
+Dockerfile
 .dockerignore
+
+# Generated data (rebuilt during docker build)
+output_gtfs/
+static/downloads/
+*.sqlite
 
 
 # Fichiers spécifiques à l'OS ou à l'éditeur

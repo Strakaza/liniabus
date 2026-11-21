@@ -11,5 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Déclencher le déploiement sur Render
-        run: curl -X POST "https://api.render.com/deploy/srv-d0peuuemcj7s73e2fm3g?key=mEClXbQZln4"
+      - name: Installer et configurer la CLI Koyeb
+        uses: koyeb-community/koyeb-actions@v2
+        with:
+          api_token: "${{ secrets.KOYEB_API_TOKEN }}"
+
+      - name: Déclencher le redéploiement sur Koyeb
+        run: koyeb services redeploy "${{ vars.KOYEB_SERVICE || 'liniabus/liniabus' }}"
