@@ -283,8 +283,9 @@ def main():
     all_data = {}
 
 
-    start_window = datetime(2026, 2, 1)
-    end_window = datetime(2026, 12, 31)
+    now = datetime.now()
+    start_window = datetime(now.year, now.month, 1)
+    end_window = now + timedelta(days=365)
 
 
     for key, config in SOURCES.items():

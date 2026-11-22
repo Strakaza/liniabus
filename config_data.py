@@ -971,7 +971,7 @@ TOP_HUBS = {
 }
 
 
-BASE_URL = "https://liniabus.eu"
+BASE_URL = "https://www.liniabus.eu"
 SUPPORTED_LANGS = [
     "fr", "en", "de", "es", "pt", "nl", "sq", "ca", "hr", "bg", "da", "et", "fi",
     "el", "hu", "hi", "lv", "lt", "lb", "mk", "ro", "pl", "cs", "sk", "sl", "sv",

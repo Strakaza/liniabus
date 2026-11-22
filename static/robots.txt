@@ -17,4 +17,4 @@ Disallow: /api/
 Disallow: /download/
 Crawl-delay: 1
 
-Sitemap: https://liniabus.eu/sitemap.xml
+Sitemap: https://www.liniabus.eu/sitemap.xml

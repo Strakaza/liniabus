@@ -40,7 +40,7 @@ limiter = Limiter(
     storage_uri="memory://"
 )
 
-img_src_origins = ["'self'", "data:", "blob:", "https://*.mapbox.com", "https://liniabus.eu", "https://*.tile.openstreetmap.org", "https://tile.openstreetmap.org", "https://*.basemaps.cartocdn.com"]
+img_src_origins = ["'self'", "data:", "blob:", "https://*.mapbox.com", "https://liniabus.eu", "https://www.liniabus.eu", "https://*.tile.openstreetmap.org", "https://tile.openstreetmap.org", "https://*.basemaps.cartocdn.com"]
 if koyeb_public_domain:
     img_src_origins.append(f"https://{koyeb_public_domain}")
 
@@ -68,11 +68,11 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
 def handle_redirection():
     host = request.host
     canonical_host = os.environ.get("CANONICAL_HOST", "").strip()
-    if canonical_host and host and host != canonical_host and "koyeb.app" in host:
+    if canonical_host and host and host != canonical_host and ("koyeb.app" in host or "mistral.run" in host):
         new_url = request.url.replace(host, canonical_host, 1)
         return redirect(new_url, code=301)
     if host and "onrender.com" in host:
-        new_url = request.url.replace(host, "liniabus.eu", 1)
+        new_url = request.url.replace(host, "www.liniabus.eu", 1)
         return redirect(new_url, code=301)
 
 BAD_BOTS = [
